@@ -1,16 +1,20 @@
 // Dashboard Page - Complete dashboard with charts and insights
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useSessions } from '../hooks/useSessions';
 import { useAuth } from '../context/AuthContext';
 import WeeklyActivityChart from '../components/charts/WeeklyActivityChart';
 import WorkoutTypeChart from '../components/charts/WorkoutTypeChart';
 import StreakHeatmap from '../components/charts/StreakHeatmap';
 import TrendsInsights from '../components/TrendsInsights';
+import EncouragementBot from '../components/EncouragementBot';
+import { calculateStreak } from '../utils/progressCalculations';
 import './Dashboard.css';
 
 function Dashboard({ userId }) {
   const { sessions, loading, error, loadSessions } = useSessions(userId);
   const { userProfile } = useAuth();
+
+  const streak = useMemo(() => calculateStreak(sessions), [sessions]);
 
   useEffect(() => {
     loadSessions();
@@ -51,6 +55,9 @@ function Dashboard({ userId }) {
           <TrendsInsights sessions={sessions} userProfile={userProfile} />
         </div>
       </div>
+
+      {/* Encouragement Bot */}
+      <EncouragementBot sessions={sessions} userProfile={userProfile} streak={streak} />
     </div>
   );
 }

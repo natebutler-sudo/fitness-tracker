@@ -52,8 +52,8 @@ function WeeklySchedule({ userId }) {
             Week {currentWorkout.weekNumber} • Starting {currentWorkout.weekStartDate}
           </p>
         </div>
-        <button onClick={handleGenerateNewWeek} className="btn-regenerate" title="Randomize new week">
-          🔄 New Week
+        <button onClick={handleGenerateNewWeek} className="btn-regenerate" title="Shuffle workout plan">
+          🔄 Shuffle Workout Plan
         </button>
       </div>
 
@@ -145,7 +145,7 @@ function WeeklySchedule({ userId }) {
 
       <div className="schedule-note">
         <p>
-          💡 Each workout includes: 10-min warmup + exercises + 5-min cooldown/core. Click "New Week"
+          💡 Each workout includes: 10-min warmup + exercises + 5-min cooldown/core. Click "Shuffle Workout Plan"
           to randomize next week's schedule.
         </p>
       </div>

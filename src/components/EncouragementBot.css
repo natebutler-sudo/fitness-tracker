@@ -1,0 +1,136 @@
+.encouragement-bot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.bot-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  max-width: 320px;
+  position: relative;
+  border-left: 4px solid #667eea;
+}
+
+.bot-character {
+  font-size: 32px;
+  min-width: 40px;
+  text-align: center;
+  animation: bounce 0.6s ease-in-out infinite;
+}
+
+.bot-message {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bot-message p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #282c34;
+  font-weight: 500;
+}
+
+.bot-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.bot-close:hover {
+  color: #666;
+}
+
+/* Mood-based styling */
+.bot-container.excited {
+  border-left-color: #ff6b6b;
+  background: linear-gradient(135deg, #fff9f9 0%, #ffffff 100%);
+}
+
+.bot-container.happy {
+  border-left-color: #667eea;
+  background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+}
+
+/* Animations */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100px) translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px) translateY(50px);
+  }
+}
+
+.encouragement-bot.animate-in {
+  animation: slideIn 0.4s ease-out;
+}
+
+.encouragement-bot.animate-out {
+  animation: fadeOut 0.4s ease-in forwards;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .encouragement-bot {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+  }
+
+  .bot-container {
+    max-width: 100%;
+  }
+
+  .bot-character {
+    font-size: 28px;
+    min-width: 36px;
+  }
+
+  .bot-message p {
+    font-size: 13px;
+  }
+}

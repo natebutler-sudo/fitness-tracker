@@ -1,38 +1,17 @@
 // Exercise Library Component
-import React, { useEffect, useState } from 'react';
-import { useExercises } from '../hooks/useExercises';
-import { initializeExercises } from '../utils/initializeExercises';
+import React, { useMemo } from 'react';
+import { exercises } from '../data/exercises';
 import './ExerciseLibrary.css';
 
 function ExerciseLibrary() {
-  const { exercises, groupedByCategory, loading, error } = useExercises();
-  const [initializing, setInitializing] = useState(false);
-  const [initMessage, setInitMessage] = useState('');
+  // Group exercises by category from local data
+  const groupedByCategory = useMemo(() => ({
+    upper: exercises.filter(e => e.category === 'upper'),
+    lower: exercises.filter(e => e.category === 'lower'),
+    cardio: exercises.filter(e => e.category === 'cardio'),
+    core: exercises.filter(e => e.category === 'core'),
+  }), []);
 
-  // Initialize exercises on first load (if needed)
-  useEffect(() => {
-    if (exercises.length === 0 && !loading) {
-      setInitializing(true);
-      initializeExercises().then(result => {
-        setInitMessage(result.message);
-        setInitializing(false);
-        // Reload exercises after initialization
-        window.location.reload();
-      });
-    }
-  }, [exercises.length, loading]);
-
-  if (loading) {
-    return <div className="exercise-library loading">Loading exercises...</div>;
-  }
-
-  if (error) {
-    return <div className="exercise-library error">Error: {error}</div>;
-  }
-
-  if (initializing) {
-    return <div className="exercise-library initializing">{initMessage}</div>;
-  }
 
   const categories = [
     { key: 'upper', label: 'Upper Body', icon: '💪' },
