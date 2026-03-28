@@ -1,0 +1,325 @@
+/* Dark Mode Theme */
+:root.dark-mode {
+  /* Background */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #242424;
+  --bg-tertiary: #2d2d2d;
+  --bg-overlay: rgba(0, 0, 0, 0.8);
+
+  /* Text */
+  --text-primary: #f0f0f0;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #808080;
+
+  /* Borders & Accents */
+  --border-color: #3d3d3d;
+  --border-light: #4d4d4d;
+
+  /* Components */
+  --card-bg: #242424;
+  --input-bg: #2d2d2d;
+  --input-border: #3d3d3d;
+  --button-bg: #667eea;
+  --button-hover: #764ba2;
+
+  /* Status Colors */
+  --success-bg: rgba(76, 175, 80, 0.15);
+  --success-text: #81c784;
+  --warning-bg: rgba(255, 152, 0, 0.15);
+  --warning-text: #ffb74d;
+  --error-bg: rgba(244, 67, 54, 0.15);
+  --error-text: #ef5350;
+}
+
+:root:not(.dark-mode) {
+  /* Light Mode (Default) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #eeeeee;
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Text */
+  --text-primary: #282c34;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+
+  /* Borders & Accents */
+  --border-color: #e0e0e0;
+  --border-light: #f0f0f0;
+
+  /* Components */
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #e0e0e0;
+  --button-bg: #667eea;
+  --button-hover: #764ba2;
+
+  /* Status Colors */
+  --success-bg: rgba(76, 175, 80, 0.1);
+  --success-text: #4caf50;
+  --warning-bg: rgba(255, 152, 0, 0.1);
+  --warning-text: #ff9800;
+  --error-bg: rgba(244, 67, 54, 0.1);
+  --error-text: #f44336;
+}
+
+/* Global Dark Mode Styles */
+:root.dark-mode {
+  color-scheme: dark;
+}
+
+:root.dark-mode body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+:root.dark-mode * {
+  background-color: inherit;
+  color: inherit;
+}
+
+/* Dashboard Dark Mode */
+:root.dark-mode .dashboard {
+  background: linear-gradient(135deg, #1a1a1a 0%, #242424 100%);
+}
+
+:root.dark-mode .dashboard-container {
+  background: var(--bg-secondary);
+}
+
+:root.dark-mode .chart-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .chart-card h3 {
+  color: var(--text-primary);
+}
+
+:root.dark-mode .day-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .day-card h3 {
+  color: var(--text-primary);
+}
+
+:root.dark-mode .schedule-note {
+  background: var(--bg-tertiary);
+  border-left: 3px solid #667eea;
+}
+
+:root.dark-mode .schedule-note p {
+  color: var(--text-secondary);
+}
+
+/* Exercise Library Dark Mode */
+:root.dark-mode .exercise-library {
+  background: var(--bg-primary);
+}
+
+:root.dark-mode .exercise-category h3 {
+  color: var(--text-primary);
+}
+
+:root.dark-mode .exercise-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .exercise-card h4 {
+  color: var(--text-primary);
+}
+
+:root.dark-mode .exercise-card p {
+  color: var(--text-secondary);
+}
+
+:root.dark-mode .tag {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+/* Form Inputs Dark Mode */
+:root.dark-mode input,
+:root.dark-mode textarea,
+:root.dark-mode select {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--input-border);
+}
+
+:root.dark-mode input:focus,
+:root.dark-mode textarea:focus,
+:root.dark-mode select:focus {
+  border-color: #667eea;
+  background-color: var(--input-bg);
+}
+
+:root.dark-mode input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Button Dark Mode */
+:root.dark-mode .btn-secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+:root.dark-mode .btn-secondary:hover {
+  background: var(--border-light);
+}
+
+/* Auth Pages Dark Mode */
+:root.dark-mode .auth-container {
+  background: var(--bg-primary);
+}
+
+:root.dark-mode .auth-form {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .auth-form h1,
+:root.dark-mode .auth-form h2 {
+  color: var(--text-primary);
+}
+
+:root.dark-mode .auth-form p,
+:root.dark-mode .auth-form label {
+  color: var(--text-secondary);
+}
+
+:root.dark-mode .divider {
+  color: var(--text-tertiary);
+}
+
+:root.dark-mode .btn-google {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+:root.dark-mode .btn-google:hover {
+  background: var(--border-light);
+}
+
+/* Modal Dark Mode */
+:root.dark-mode .modal {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .modal-header {
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+:root.dark-mode .modal-header h2 {
+  color: var(--text-primary);
+}
+
+/* Encouragement Bot Dark Mode */
+:root.dark-mode .bot-container {
+  background: var(--card-bg);
+  border-left: 4px solid #667eea;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+:root.dark-mode .bot-message p {
+  color: var(--text-primary);
+}
+
+:root.dark-mode .bot-close {
+  color: var(--text-tertiary);
+}
+
+:root.dark-mode .bot-close:hover {
+  color: var(--text-secondary);
+}
+
+/* Trend Insights Dark Mode */
+:root.dark-mode .trends-insights {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .trends-insights h3 {
+  color: var(--text-primary);
+}
+
+:root.dark-mode .trends-insights p {
+  color: var(--text-secondary);
+}
+
+:root.dark-mode .insight-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .insight-card h4 {
+  color: var(--text-primary);
+}
+
+/* Progress Stats Dark Mode */
+:root.dark-mode .progress-stats {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .progress-stats h3 {
+  color: var(--text-primary);
+}
+
+:root.dark-mode .stat-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .stat-card h4 {
+  color: var(--text-primary);
+}
+
+/* Badges Dark Mode */
+:root.dark-mode .badge {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+:root.dark-mode .badge.unlocked {
+  background: rgba(102, 126, 234, 0.15);
+  border-color: #667eea;
+}
+
+:root.dark-mode .badge-name {
+  color: var(--text-primary);
+}
+
+:root.dark-mode .badge-description {
+  color: var(--text-secondary);
+}
+
+/* Loading & Errors Dark Mode */
+:root.dark-mode .loading {
+  color: var(--text-secondary);
+}
+
+:root.dark-mode .error {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid var(--error-text);
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Prevent transitions on load */
+:root.loading * {
+  transition: none !important;
+}
