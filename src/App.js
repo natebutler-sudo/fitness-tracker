@@ -1,37 +1,48 @@
 import React, { useState } from 'react';
+import { useAuth } from './context/AuthContext';
+import Header from './components/Header';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 import ExerciseLibrary from './components/ExerciseLibrary';
 import WeeklySchedule from './components/WeeklySchedule';
 import './App.css';
 
 function App() {
-  // TODO: Replace with actual Firebase auth
-  const [userId] = useState('test-user-001');
+  const { user, loading } = useAuth();
   const [activeTab, setActiveTab] = useState('schedule');
+  const [authMode, setAuthMode] = useState('login'); // 'login' or 'signup'
 
+  if (loading) {
+    return (
+      <div className="App loading-screen">
+        <div className="loading-spinner">
+          <div className="spinner"></div>
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Not authenticated - show auth pages
+  if (!user) {
+    return (
+      <div className="App">
+        {authMode === 'login' ? (
+          <LoginPage onSwitchToSignup={() => setAuthMode('signup')} />
+        ) : (
+          <SignupPage onSwitchToLogin={() => setAuthMode('login')} />
+        )}
+      </div>
+    );
+  }
+
+  // Authenticated - show main app
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Fitness Tracker</h1>
-        <p>Track your workouts, build your routine, monitor progress</p>
-      </header>
-
-      <nav className="App-nav">
-        <button
-          className={`nav-btn ${activeTab === 'schedule' ? 'active' : ''}`}
-          onClick={() => setActiveTab('schedule')}
-        >
-          📅 Weekly Schedule
-        </button>
-        <button
-          className={`nav-btn ${activeTab === 'exercises' ? 'active' : ''}`}
-          onClick={() => setActiveTab('exercises')}
-        >
-          💪 Exercise Library
-        </button>
-      </nav>
+      <Header activeTab={activeTab} onTabChange={setActiveTab} />
 
       <main className="App-main">
-        {activeTab === 'schedule' && <WeeklySchedule userId={userId} />}
+        {activeTab === 'schedule' && <WeeklySchedule userId={user.uid} />}
         {activeTab === 'exercises' && <ExerciseLibrary />}
       </main>
     </div>
