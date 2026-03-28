@@ -59,6 +59,12 @@ function Header({ activeTab, onTabChange }) {
       {activeTab !== undefined && (
         <nav className="App-nav">
           <button
+            className={`nav-btn ${activeTab === 'dashboard' ? 'active' : ''}`}
+            onClick={() => onTabChange('dashboard')}
+          >
+            🏠 Dashboard
+          </button>
+          <button
             className={`nav-btn ${activeTab === 'schedule' ? 'active' : ''}`}
             onClick={() => onTabChange('schedule')}
           >

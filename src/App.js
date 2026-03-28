@@ -7,11 +7,12 @@ import ExerciseLibrary from './components/ExerciseLibrary';
 import WeeklySchedule from './components/WeeklySchedule';
 import ProgressStats from './components/ProgressStats';
 import WorkoutHistory from './components/WorkoutHistory';
+import Dashboard from './pages/Dashboard';
 import './App.css';
 
 function App() {
   const { user, loading } = useAuth();
-  const [activeTab, setActiveTab] = useState('schedule');
+  const [activeTab, setActiveTab] = useState('dashboard');
   const [authMode, setAuthMode] = useState('login'); // 'login' or 'signup'
 
   if (loading) {
@@ -44,6 +45,7 @@ function App() {
       <Header activeTab={activeTab} onTabChange={setActiveTab} />
 
       <main className="App-main">
+        {activeTab === 'dashboard' && <Dashboard userId={user.uid} />}
         {activeTab === 'schedule' && <WeeklySchedule userId={user.uid} />}
         {activeTab === 'exercises' && <ExerciseLibrary />}
         {activeTab === 'progress' && (
