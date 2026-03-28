@@ -1,0 +1,229 @@
+.workout-history {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.workout-history h2 {
+  font-size: 2rem;
+  color: #282c34;
+  margin: 0 0 25px 0;
+}
+
+.workout-history.loading,
+.workout-history.error {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.1rem;
+}
+
+.workout-history.loading {
+  color: #666;
+}
+
+.workout-history.error {
+  color: #d32f2f;
+}
+
+/* Filter Buttons */
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background-color: white;
+  border: 2px solid #ddd;
+  color: #666;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  border-color: #999;
+  color: #282c34;
+}
+
+.filter-btn.active {
+  background-color: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+/* No Sessions */
+.no-sessions {
+  text-align: center;
+  padding: 40px 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  color: #999;
+}
+
+.no-sessions p {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+}
+
+.no-sessions .hint {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Sessions List */
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.session-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.session-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #999;
+}
+
+.session-card.upper {
+  border-left: 4px solid #ff6b6b;
+}
+
+.session-card.lower {
+  border-left: 4px solid #4ecdc4;
+}
+
+.session-card.cardio {
+  border-left: 4px solid #ffd93d;
+}
+
+.session-card.core {
+  border-left: 4px solid #6bcf7f;
+}
+
+/* Session Header */
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #f9f9f9;
+  border-bottom: 1px solid #eee;
+}
+
+.session-header h3 {
+  margin: 0 0 5px 0;
+  color: #282c34;
+  font-size: 1.1rem;
+}
+
+.session-date {
+  margin: 0;
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.session-meta {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.duration {
+  color: #666;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Session Exercises */
+.session-exercises {
+  padding: 15px;
+}
+
+.exercise-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.95rem;
+}
+
+.exercise-item:last-child {
+  border-bottom: none;
+}
+
+.exercise-name {
+  color: #282c34;
+  font-weight: 500;
+  flex: 1;
+}
+
+.exercise-stats {
+  color: #999;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  background-color: #f5f5f5;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Session Notes */
+.session-notes {
+  padding: 15px;
+  background: #fffbea;
+  border-top: 1px solid #ffe0b2;
+}
+
+.session-notes p {
+  margin: 0;
+  color: #856404;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .workout-history {
+    padding: 20px 10px;
+  }
+
+  .workout-history h2 {
+    font-size: 1.5rem;
+  }
+
+  .filter-buttons {
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .session-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .session-meta {
+    width: 100%;
+  }
+
+  .exercise-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

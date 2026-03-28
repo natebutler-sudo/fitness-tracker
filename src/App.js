@@ -5,6 +5,8 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import ExerciseLibrary from './components/ExerciseLibrary';
 import WeeklySchedule from './components/WeeklySchedule';
+import ProgressStats from './components/ProgressStats';
+import WorkoutHistory from './components/WorkoutHistory';
 import './App.css';
 
 function App() {
@@ -44,6 +46,12 @@ function App() {
       <main className="App-main">
         {activeTab === 'schedule' && <WeeklySchedule userId={user.uid} />}
         {activeTab === 'exercises' && <ExerciseLibrary />}
+        {activeTab === 'progress' && (
+          <div className="progress-container">
+            <ProgressStats userId={user.uid} />
+            <WorkoutHistory userId={user.uid} />
+          </div>
+        )}
       </main>
     </div>
   );

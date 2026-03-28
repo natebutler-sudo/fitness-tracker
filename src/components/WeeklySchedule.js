@@ -1,7 +1,8 @@
 // Weekly Schedule Component - Display and manage weekly workout
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useWorkouts } from '../hooks/useWorkouts';
 import { formatScheduleForDisplay, estimateWorkoutTime } from '../utils/workoutRandomizer';
+import LogWorkoutModal from './LogWorkoutModal';
 import './WeeklySchedule.css';
 
 function WeeklySchedule({ userId }) {
@@ -12,10 +13,17 @@ function WeeklySchedule({ userId }) {
     loadCurrentWeek,
     generateNewWeek,
   } = useWorkouts(userId);
+  const [showLogModal, setShowLogModal] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(null);
 
   useEffect(() => {
     loadCurrentWeek();
   }, [loadCurrentWeek]);
+
+  const handleLogWorkout = (day, dayWorkout) => {
+    setSelectedDay({ day, workout: dayWorkout });
+    setShowLogModal(true);
+  };
 
   const handleGenerateNewWeek = async () => {
     await generateNewWeek();
@@ -95,6 +103,12 @@ function WeeklySchedule({ userId }) {
                   <span className="duration">
                     ⏱️ ~{estimateWorkoutTime(dayData.workout.exercises)} min
                   </span>
+                  <button
+                    className="btn-log-workout"
+                    onClick={() => handleLogWorkout(dayData.fullDay, dayData.workout)}
+                  >
+                    Log Workout
+                  </button>
                 </div>
               </>
             )}
@@ -135,6 +149,22 @@ function WeeklySchedule({ userId }) {
           to randomize next week's schedule.
         </p>
       </div>
+
+      {showLogModal && selectedDay && (
+        <LogWorkoutModal
+          userId={userId}
+          workout={selectedDay.workout}
+          date={new Date().toISOString().split('T')[0]}
+          onClose={() => {
+            setShowLogModal(false);
+            setSelectedDay(null);
+          }}
+          onSaved={() => {
+            setShowLogModal(false);
+            setSelectedDay(null);
+          }}
+        />
+      )}
     </div>
   );
 }

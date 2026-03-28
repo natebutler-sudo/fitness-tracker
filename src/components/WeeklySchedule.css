@@ -195,12 +195,37 @@
   margin-top: 15px;
   padding-top: 15px;
   border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
 
 .duration {
   font-size: 0.9rem;
   color: #666;
-  display: block;
+}
+
+.btn-log-workout {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-log-workout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-log-workout:active {
+  transform: translateY(0);
 }
 
 /* Summary */

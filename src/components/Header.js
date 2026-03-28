@@ -70,6 +70,12 @@ function Header({ activeTab, onTabChange }) {
           >
             💪 Exercise Library
           </button>
+          <button
+            className={`nav-btn ${activeTab === 'progress' ? 'active' : ''}`}
+            onClick={() => onTabChange('progress')}
+          >
+            📊 Progress
+          </button>
         </nav>
       )}
     </header>
