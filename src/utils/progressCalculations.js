@@ -1,5 +1,5 @@
 // Progress Calculations - Calculate PRs, streaks, stats
-import exercises from '../data/exercises';
+import { exercises } from '../data/exercises';
 
 // Get personal record for an exercise
 export const getExercisePR = (sessions, exerciseId) => {
