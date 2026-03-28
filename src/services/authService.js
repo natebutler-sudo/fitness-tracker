@@ -2,6 +2,8 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
   signOut,
   updateProfile as firebaseUpdateProfile,
 } from 'firebase/auth';
@@ -56,6 +58,42 @@ export const login = async (email, password) => {
     return { uid: user.uid, email: user.email, displayName: user.displayName };
   } catch (error) {
     console.error('Login error:', error);
+    throw new Error(error.message);
+  }
+};
+
+// Sign in with Google
+export const signInWithGoogle = async () => {
+  try {
+    const provider = new GoogleAuthProvider();
+    const userCredential = await signInWithPopup(auth, provider);
+    const user = userCredential.user;
+
+    // Check if user profile exists, if not create one
+    const existingProfile = await getUserProfile(user.uid);
+    if (!existingProfile) {
+      const userProfile = {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName || 'User',
+        goal: 'tone up and burn fat',
+        experience: 'intermediate',
+        availableEquipment: ['dumbbells'],
+        restDays: ['saturday', 'sunday'],
+        preferences: {
+          workoutDuration: 60,
+          daysPerWeek: 5,
+          randomizeWeekly: true,
+        },
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      await setDoc(doc(db, 'users', user.uid), userProfile);
+    }
+
+    return { uid: user.uid, email: user.email, displayName: user.displayName };
+  } catch (error) {
+    console.error('Google sign-in error:', error);
     throw new Error(error.message);
   }
 };

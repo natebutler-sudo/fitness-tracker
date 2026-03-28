@@ -1,6 +1,6 @@
 // Login Page
 import React, { useState } from 'react';
-import { login } from '../services/authService';
+import { login, signInWithGoogle } from '../services/authService';
 import './AuthPages.css';
 
 function LoginPage({ onSwitchToSignup }) {
@@ -24,6 +24,20 @@ function LoginPage({ onSwitchToSignup }) {
       // Auth context will handle redirect
     } catch (err) {
       setError(err.message || 'Failed to log in');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setError('');
+    setLoading(true);
+
+    try {
+      await signInWithGoogle();
+      // Auth context will handle redirect
+    } catch (err) {
+      setError(err.message || 'Failed to sign in with Google');
     } finally {
       setLoading(false);
     }
@@ -68,6 +82,19 @@ function LoginPage({ onSwitchToSignup }) {
               {loading ? 'Logging in...' : 'Log In'}
             </button>
           </form>
+
+          <div className="divider">
+            <span>Or</span>
+          </div>
+
+          <button
+            type="button"
+            className="btn-google"
+            onClick={handleGoogleLogin}
+            disabled={loading}
+          >
+            🔍 Sign in with Google
+          </button>
 
           <div className="auth-footer">
             <p>

@@ -1,6 +1,6 @@
 // Signup Page
 import React, { useState } from 'react';
-import { signup } from '../services/authService';
+import { signup, signInWithGoogle } from '../services/authService';
 import './AuthPages.css';
 
 function SignupPage({ onSwitchToLogin }) {
@@ -36,6 +36,20 @@ function SignupPage({ onSwitchToLogin }) {
       // Auth context will handle redirect
     } catch (err) {
       setError(err.message || 'Failed to create account');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleSignup = async () => {
+    setError('');
+    setLoading(true);
+
+    try {
+      await signInWithGoogle();
+      // Auth context will handle redirect
+    } catch (err) {
+      setError(err.message || 'Failed to sign up with Google');
     } finally {
       setLoading(false);
     }
@@ -104,6 +118,19 @@ function SignupPage({ onSwitchToLogin }) {
               {loading ? 'Creating account...' : 'Sign Up'}
             </button>
           </form>
+
+          <div className="divider">
+            <span>Or</span>
+          </div>
+
+          <button
+            type="button"
+            className="btn-google"
+            onClick={handleGoogleSignup}
+            disabled={loading}
+          >
+            🔍 Sign up with Google
+          </button>
 
           <div className="auth-footer">
             <p>
