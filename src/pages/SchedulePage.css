@@ -1,0 +1,127 @@
+/**
+ * Schedule Page Styles
+ * Mobile-first responsive design for workout schedule management
+ */
+
+.schedule-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f9f9f9;
+  overflow-x: hidden;
+}
+
+.schedule-page .week-navigator {
+  background: white;
+  border-bottom: 1px solid #e8e8e8;
+  margin: 0;
+  border-radius: 0;
+}
+
+.schedule-page .weekly-calendar {
+  flex: 1;
+  padding: 12px;
+  background: white;
+  margin-bottom: 60px; /* Space for bottom navigation */
+}
+
+/* Loading and Error States */
+.schedule-page .loading,
+.schedule-page .error {
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.schedule-page .loading {
+  color: #666;
+}
+
+.schedule-page .error {
+  color: #FF6B6B;
+  background: #ffe6e6;
+  border-radius: 12px;
+  margin: 20px;
+}
+
+/* No Schedule State */
+.schedule-page .no-schedule {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 20px;
+  text-align: center;
+}
+
+.schedule-page .no-schedule p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.schedule-page .btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.schedule-page .btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+
+.schedule-page .btn-primary:active {
+  opacity: 0.9;
+  transform: scale(0.95);
+}
+
+/* Dark Mode Support */
+.dark-mode .schedule-page {
+  background: #1a1e24;
+}
+
+.dark-mode .schedule-page .weekly-calendar {
+  background: #282c34;
+}
+
+.dark-mode .schedule-page .no-schedule {
+  background: #282c34;
+}
+
+.dark-mode .schedule-page .no-schedule p {
+  color: #999;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .schedule-page .weekly-calendar {
+    padding: 8px;
+    margin-bottom: 60px;
+  }
+
+  .schedule-page .no-schedule {
+    min-height: 300px;
+  }
+}
+
+/* Tablet and Up */
+@media (min-width: 768px) {
+  .schedule-page .weekly-calendar {
+    padding: 16px;
+    margin-bottom: 0;
+  }
+
+  .schedule-page {
+    background: white;
+  }
+}

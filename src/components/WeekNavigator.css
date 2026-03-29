@@ -1,0 +1,260 @@
+/**
+ * Week Navigator Styles
+ * Mobile-first responsive design for week navigation controls
+ */
+
+.week-navigator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px;
+  background: white;
+  border-bottom: 1px solid #e8e8e8;
+  position: sticky;
+  top: 0;
+  z-index: 15;
+}
+
+/* Navigation Groups */
+.nav-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-left {
+  flex: 0 0 auto;
+}
+
+.nav-right {
+  flex: 0 0 auto;
+}
+
+/* Center Info */
+.nav-center {
+  flex: 1;
+  min-width: 0;
+}
+
+.week-info {
+  text-align: center;
+}
+
+.week-number {
+  font-size: 15px;
+  font-weight: 700;
+  color: #282c34;
+  line-height: 1.2;
+}
+
+.date-range {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.2;
+}
+
+.week-status {
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.week-status.is-current {
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* Navigation Buttons */
+.btn-nav {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 2px solid #e8e8e8;
+  border-radius: 8px;
+  background: white;
+  color: #282c34;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.btn-nav:active {
+  background: #f5f5f5;
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.btn-prev:active::before {
+  content: '';
+  margin-right: 2px;
+}
+
+.btn-next:active::after {
+  content: '';
+  margin-left: 2px;
+}
+
+/* This Week Button */
+.btn-this-week {
+  padding: 10px 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn-this-week:active {
+  opacity: 0.9;
+  transform: translateX(-50%) scale(0.95);
+}
+
+/* Dark Mode Support */
+.dark-mode .week-navigator {
+  background: #282c34;
+  border-color: #444;
+}
+
+.dark-mode .week-number {
+  color: #ffffff;
+}
+
+.dark-mode .date-range {
+  color: #999;
+}
+
+.dark-mode .week-status {
+  color: #888;
+}
+
+.dark-mode .week-status.is-current {
+  color: #88c0ff;
+}
+
+.dark-mode .btn-nav {
+  background: #3a3f47;
+  border-color: #444;
+  color: #ffffff;
+}
+
+.dark-mode .btn-nav:active {
+  background: #4a5057;
+  border-color: #667eea;
+  color: #667eea;
+}
+
+/* Mobile Responsive - Extra Small (320px) */
+@media (max-width: 360px) {
+  .week-navigator {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .week-number {
+    font-size: 14px;
+  }
+
+  .date-range {
+    font-size: 11px;
+  }
+
+  .week-status {
+    font-size: 9px;
+  }
+
+  .btn-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .btn-this-week {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+}
+
+/* Mobile Responsive - Small (480px and up) */
+@media (min-width: 361px) {
+  .week-navigator {
+    padding: 12px;
+  }
+
+  .btn-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .btn-this-week {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Tablet and Up (768px and up) */
+@media (min-width: 768px) {
+  .week-navigator {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .week-number {
+    font-size: 16px;
+  }
+
+  .date-range {
+    font-size: 13px;
+  }
+
+  .btn-nav {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  .btn-this-week {
+    position: static;
+    transform: none;
+    margin-left: auto;
+  }
+}
+
+/* Sticky positioning */
+@supports (position: sticky) {
+  .week-navigator {
+    position: sticky;
+  }
+}
+
+/* Touch target size (min 44px as per guidelines) */
+@media (hover: none) and (pointer: coarse) {
+  .btn-nav {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .btn-nav:active {
+    background: #f0f4ff;
+  }
+
+  .dark-mode .btn-nav:active {
+    background: #4a5057;
+  }
+}

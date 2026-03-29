@@ -5,7 +5,7 @@ import Header from './components/Header';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import ExerciseLibrary from './components/ExerciseLibrary';
-import WeeklySchedule from './components/WeeklySchedule';
+import SchedulePage from './pages/SchedulePage';
 import ProgressStats from './components/ProgressStats';
 import WorkoutHistory from './components/WorkoutHistory';
 import Dashboard from './pages/Dashboard';
@@ -61,7 +61,7 @@ function AppContent() {
 
       <main className="App-main">
         {activeTab === 'dashboard' && <Dashboard userId={user.uid} />}
-        {activeTab === 'schedule' && <WeeklySchedule userId={user.uid} />}
+        {activeTab === 'schedule' && <SchedulePage userId={user.uid} />}
         {activeTab === 'exercises' && <ExerciseLibrary />}
         {activeTab === 'progress' && (
           <div className="progress-container">

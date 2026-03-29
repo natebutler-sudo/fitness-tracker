@@ -10,6 +10,7 @@ import {
   query,
   where,
   orderBy,
+  writeBatch,
 } from 'firebase/firestore';
 
 const WORKOUTS_COLLECTION = 'workouts';
@@ -127,6 +128,181 @@ export const getDayWorkout = async (workoutId, day) => {
     return null;
   } catch (error) {
     console.error('Error getting day workout:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get or create monthly schedules for a given month
+ * Checks if schedules exist; if not, generates and bulk creates them
+ * @param {string} userId - User ID
+ * @param {number} year - Year (e.g., 2024)
+ * @param {number} month - Month (0-11, where 0 = January)
+ * @param {Function} generateMonthlySchedules - Function to generate schedules
+ * @returns {Array} Array of created/existing week objects
+ */
+export const getOrCreateMonthlySchedules = async (userId, year, month, generateMonthlySchedules) => {
+  try {
+    // Get first and last day of the month
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+
+    // Query for existing schedules in this month
+    const q = query(
+      collection(db, WORKOUTS_COLLECTION),
+      where('userId', '==', userId),
+      where('year', '==', year),
+      where('month', '==', month + 1) // Store as 1-12 for readability
+    );
+    const querySnapshot = await getDocs(q);
+
+    // If schedules already exist, return them
+    if (!querySnapshot.empty) {
+      return querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+    }
+
+    // Generate new schedules
+    const generatedWeeks = generateMonthlySchedules(year, month);
+
+    if (generatedWeeks.length === 0) {
+      return [];
+    }
+
+    // Bulk create all weeks using a batch write
+    const batch = writeBatch(db);
+
+    const createdWeeks = generatedWeeks.map(week => {
+      const docRef = doc(collection(db, WORKOUTS_COLLECTION));
+      const workoutData = {
+        userId,
+        weekNumber: week.weekNumber,
+        weekStartDate: week.weekStartDate,
+        weekEndDate: week.weekEndDate,
+        schedule: week.schedule,
+        month: week.month,
+        year: week.year,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      batch.set(docRef, workoutData);
+
+      return {
+        id: docRef.id,
+        ...workoutData,
+      };
+    });
+
+    // Commit the batch
+    await batch.commit();
+
+    return createdWeeks;
+  } catch (error) {
+    console.error('Error getting or creating monthly schedules:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get week schedule for a specific date
+ * @param {string} userId - User ID
+ * @param {string} dateISO - Date as ISO string (YYYY-MM-DD)
+ * @returns {Object} Week object or null
+ */
+export const getWeekByDate = async (userId, dateISO) => {
+  try {
+    const date = new Date(dateISO + 'T00:00:00Z');
+
+    // Calculate the Monday of the week containing this date
+    const day = date.getUTCDay();
+    const diff = date.getUTCDate() - day + (day === 0 ? -6 : 1);
+    const monday = new Date(date);
+    monday.setUTCDate(diff);
+
+    const mondayISO = monday.toISOString().split('T')[0];
+
+    // Query for a workout with this week start date
+    const q = query(
+      collection(db, WORKOUTS_COLLECTION),
+      where('userId', '==', userId),
+      where('weekStartDate', '==', mondayISO)
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      const doc = querySnapshot.docs[0];
+      return { id: doc.id, ...doc.data() };
+    }
+
+    return null;
+  } catch (error) {
+    console.error('Error getting week by date:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get multiple weeks by date range
+ * @param {string} userId - User ID
+ * @param {string} startDateISO - Start date as ISO string (YYYY-MM-DD)
+ * @param {string} endDateISO - End date as ISO string (YYYY-MM-DD)
+ * @returns {Array} Array of week objects
+ */
+export const getWeeksByDateRange = async (userId, startDateISO, endDateISO) => {
+  try {
+    const q = query(
+      collection(db, WORKOUTS_COLLECTION),
+      where('userId', '==', userId),
+      where('weekStartDate', '>=', startDateISO),
+      where('weekStartDate', '<=', endDateISO),
+      orderBy('weekStartDate', 'asc')
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  } catch (error) {
+    console.error('Error getting weeks by date range:', error);
+    throw error;
+  }
+};
+
+/**
+ * Randomize a single day with balance checking
+ * @param {string} workoutId - Workout document ID
+ * @param {string} day - Day name (e.g., 'monday')
+ * @param {Function} randomizeSingleDay - Function to randomize while checking balance
+ * @returns {Object} Updated day workout or null if balance can't be maintained
+ */
+export const randomizeDayWithBalance = async (workoutId, day, randomizeSingleDay) => {
+  try {
+    // Get current workout
+    const workout = await getWorkoutById(workoutId);
+    if (!workout) {
+      throw new Error('Workout not found');
+    }
+
+    // Randomize the day while respecting balance
+    const newDayWorkout = randomizeSingleDay(day, workout.schedule);
+
+    if (!newDayWorkout) {
+      console.warn('Could not randomize day while maintaining balance');
+      return null;
+    }
+
+    // Update the specific day in Firestore
+    await updateDayWorkout(workoutId, day, newDayWorkout);
+
+    return newDayWorkout;
+  } catch (error) {
+    console.error('Error randomizing day with balance:', error);
     throw error;
   }
 };
