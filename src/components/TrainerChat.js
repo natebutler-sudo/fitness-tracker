@@ -85,6 +85,7 @@ export default function TrainerChat({ avatar, onClose }) {
         timestamp: new Date()
       }]);
 
+      setLoading(false);
     } catch (err) {
       console.error('Error sending message:', err);
       setError(err.message || 'Failed to get response. Please try again.');
