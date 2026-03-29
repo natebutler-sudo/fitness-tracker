@@ -343,6 +343,192 @@
   background: white;
 }
 
+/* Step 3: Guided Tour */
+.tour-welcome {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.tour-trainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.tour-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(102, 126, 234, 0.5);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.tour-greeting h2 {
+  font-size: 20px;
+  margin: 0 0 8px;
+  color: #282c34;
+  font-weight: 700;
+}
+
+.tour-greeting p {
+  font-size: 14px;
+  margin: 0;
+  color: #666;
+}
+
+.tour-feature {
+  margin: 30px 0;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  text-align: center;
+  animation: slideUp 0.5s ease-out;
+}
+
+.feature-icon {
+  font-size: 50px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.tour-feature h3 {
+  font-size: 22px;
+  margin: 0 0 10px;
+  color: #282c34;
+  font-weight: 700;
+}
+
+.feature-description {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 15px;
+  line-height: 1.5;
+}
+
+.feature-hint {
+  font-size: 13px;
+  color: #667eea;
+  background: #f0f4ff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 0;
+  border-left: 3px solid #667eea;
+  text-align: left;
+}
+
+.tour-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.progress-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #667eea;
+  width: 24px;
+  border-radius: 4px;
+}
+
+.dot:hover {
+  background: #667eea;
+}
+
+.progress-text {
+  font-size: 12px;
+  color: #999;
+  margin: 0;
+  font-weight: 500;
+}
+
+.tour-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.tour-buttons .btn-secondary {
+  flex: 0 1 auto;
+  width: auto;
+  padding: 12px 20px;
+  margin-top: 0;
+}
+
+.tour-buttons .btn-primary {
+  flex: 1;
+  margin-top: 0;
+}
+
+/* Dark Mode Support for Tour */
+.dark-mode .tour-welcome {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.dark-mode .tour-feature {
+  background: #282c34;
+}
+
+.dark-mode .tour-greeting h2,
+.dark-mode .tour-feature h3 {
+  color: #ffffff;
+}
+
+.dark-mode .tour-greeting p,
+.dark-mode .feature-description {
+  color: #b0b0b0;
+}
+
+.dark-mode .feature-hint {
+  background: rgba(102, 126, 234, 0.1);
+  color: #88c0ff;
+  border-left-color: #667eea;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .onboarding {
@@ -375,6 +561,28 @@
     width: 70px;
     height: 70px;
     font-size: 32px;
+  }
+
+  .tour-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+
+  .tour-feature h3 {
+    font-size: 20px;
+  }
+
+  .feature-icon {
+    font-size: 44px;
+  }
+
+  .feature-description {
+    font-size: 13px;
+  }
+
+  .tour-buttons {
+    flex-wrap: wrap;
   }
 
   .onboarding-progress {
@@ -415,11 +623,66 @@
     gap: 8px;
   }
 
+  .tour-welcome {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .tour-avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+  }
+
+  .tour-greeting h2 {
+    font-size: 18px;
+  }
+
+  .tour-feature {
+    padding: 15px;
+    margin: 20px 0;
+  }
+
+  .tour-feature h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .feature-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .feature-description {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .feature-hint {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .tour-progress {
+    margin: 20px 0;
+    gap: 12px;
+  }
+
   .btn-primary,
   .btn-secondary,
   .btn-skip {
     padding: 12px 16px;
     font-size: 14px;
+  }
+
+  .tour-buttons {
+    margin-top: 20px;
+    gap: 8px;
+  }
+
+  .tour-buttons .btn-secondary {
+    padding: 10px 16px;
+    font-size: 13px;
   }
 
   .onboarding-progress {

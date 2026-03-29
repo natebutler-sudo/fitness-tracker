@@ -5,10 +5,11 @@ import './Onboarding.css';
 
 function Onboarding({ onComplete }) {
   const { userProfile, updateProfile } = useAuth();
-  const [step, setStep] = useState(1); // 1: trainer name, 2: avatar selection, 3: photos
+  const [step, setStep] = useState(1); // 1: trainer name, 2: avatar selection, 3: tour, 4: photos
   const [trainerName, setTrainerName] = useState(userProfile?.trainer?.name || '');
   const [selectedAvatar, setSelectedAvatar] = useState(userProfile?.trainer?.avatar || '💪');
   const [photoStep, setPhotoStep] = useState(0);
+  const [tourStep, setTourStep] = useState(0);
 
   // Trainer avatar options
   const avatarOptions = [
@@ -26,6 +27,39 @@ function Onboarding({ onComplete }) {
     { id: 'front', label: 'Front View', emoji: '📸', description: 'Stand straight, arms at sides' },
     { id: 'side', label: 'Side View', emoji: '📸', description: 'Stand sideways to camera' },
     { id: 'back', label: 'Back View', emoji: '📸', description: 'Show your back' },
+  ];
+
+  const tourFeatures = [
+    {
+      icon: '🏠',
+      title: 'Dashboard',
+      description: 'Your fitness hub! See your progress, achievements, streaks, and get personalized insights.',
+      hint: 'Check your badges and progress charts here',
+    },
+    {
+      icon: '📅',
+      title: 'Weekly Schedule',
+      description: 'Your personalized workout plan. Shuffle for new routines, log your completed workouts.',
+      hint: 'We mix upper, lower, cardio, and core workouts',
+    },
+    {
+      icon: '💪',
+      title: 'Exercise Library',
+      description: 'Browse all 30+ exercises with descriptions, variations, and trainer examples.',
+      hint: 'Find exercises that match your equipment',
+    },
+    {
+      icon: '📊',
+      title: 'Progress Tracker',
+      description: 'Track your personal records, stats, and workout history. Export your data anytime.',
+      hint: 'Watch your strength grow over time',
+    },
+    {
+      icon: '🌙',
+      title: 'Customize',
+      description: 'Toggle dark mode, export your data, and manage your preferences.',
+      hint: 'Found in the top right corner',
+    },
   ];
 
   const handleTrainerNameSubmit = async () => {
@@ -53,7 +87,21 @@ function Onboarding({ onComplete }) {
         createdAt: new Date().toISOString(),
       },
     });
-    setStep(3);
+    setStep(3); // Go to tour
+  };
+
+  const handleTourNext = () => {
+    if (tourStep < tourFeatures.length - 1) {
+      setTourStep(tourStep + 1);
+    } else {
+      setStep(4); // Go to photos
+    }
+  };
+
+  const handleTourPrev = () => {
+    if (tourStep > 0) {
+      setTourStep(tourStep - 1);
+    }
   };
 
   const handlePhotoCapture = async (photoType) => {
@@ -146,8 +194,60 @@ function Onboarding({ onComplete }) {
         </div>
       )}
 
-      {/* Step 3: Progress Photos */}
+      {/* Step 3: Guided Tour */}
       {step === 3 && (
+        <div className="onboarding-step step-3">
+          <div className="onboarding-content">
+            <div className="tour-welcome">
+              <div className="tour-trainer">
+                <div className="tour-avatar">{selectedAvatar}</div>
+                <div className="tour-greeting">
+                  <h2>Welcome! I'm {trainerName}</h2>
+                  <p>Let me show you around the app and where you'll spend most of your time.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="tour-feature">
+              <div className="feature-icon">{tourFeatures[tourStep].icon}</div>
+              <h3>{tourFeatures[tourStep].title}</h3>
+              <p className="feature-description">{tourFeatures[tourStep].description}</p>
+              <div className="feature-hint">💡 {tourFeatures[tourStep].hint}</div>
+            </div>
+
+            <div className="tour-progress">
+              <div className="progress-dots">
+                {tourFeatures.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`dot ${index === tourStep ? 'active' : ''}`}
+                  />
+                ))}
+              </div>
+              <p className="progress-text">
+                {tourStep + 1} of {tourFeatures.length}
+              </p>
+            </div>
+
+            <div className="tour-buttons">
+              {tourStep > 0 && (
+                <button onClick={handleTourPrev} className="btn-secondary">
+                  ← Back
+                </button>
+              )}
+              <button
+                onClick={handleTourNext}
+                className="btn-primary"
+              >
+                {tourStep === tourFeatures.length - 1 ? 'Next' : 'Next'} →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Step 4: Progress Photos */}
+      {step === 4 && (
         <div className="onboarding-step step-3">
           <div className="onboarding-content">
             <div className="step-header">
