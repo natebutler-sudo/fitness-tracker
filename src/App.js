@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -8,10 +9,13 @@ import WeeklySchedule from './components/WeeklySchedule';
 import ProgressStats from './components/ProgressStats';
 import WorkoutHistory from './components/WorkoutHistory';
 import Dashboard from './pages/Dashboard';
+import Onboarding from './pages/Onboarding';
+import NotificationCenter from './components/NotificationCenter';
+import './styles/dark-mode.css';
 import './App.css';
 
-function App() {
-  const { user, loading } = useAuth();
+function AppContent() {
+  const { user, loading, userProfile, updateProfile } = useAuth();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [authMode, setAuthMode] = useState('login'); // 'login' or 'signup'
 
@@ -39,6 +43,17 @@ function App() {
     );
   }
 
+  // First-time user - show onboarding
+  if (!userProfile?.onboardingComplete) {
+    return (
+      <Onboarding
+        onComplete={() => {
+          updateProfile({ onboardingComplete: true });
+        }}
+      />
+    );
+  }
+
   // Authenticated - show main app
   return (
     <div className="App">
@@ -55,7 +70,18 @@ function App() {
           </div>
         )}
       </main>
+
+      {/* Notification Center */}
+      <NotificationCenter />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 
