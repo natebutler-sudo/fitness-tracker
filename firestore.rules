@@ -5,6 +5,11 @@ service cloud.firestore {
     // Users can only read/write their own user document
     match /users/{userId} {
       allow read, write: if request.auth.uid == userId;
+
+      // Chat history - users can only read/write their own chat messages
+      match /chats/{chatId} {
+        allow read, write: if request.auth.uid == userId;
+      }
     }
 
     // Exercises are readable by everyone, writable by no one (admin only)
