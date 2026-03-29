@@ -10,7 +10,8 @@ import { useNotifications } from '../components/NotificationCenter';
 import LogWorkoutModal from '../components/LogWorkoutModal';
 import WeekNavigator from '../components/WeekNavigator';
 import WeeklyCalendar from '../components/WeeklyCalendar';
-import { getWeekNumber, getMonday, formatDateISO } from '../utils/advancedRandomizer';
+import { getMonday, formatDateISO } from '../utils/advancedRandomizer';
+import { getWeekNumber } from '../utils/workoutRandomizer';
 import './SchedulePage.css';
 
 function SchedulePage({ userId }) {
@@ -26,6 +27,7 @@ function SchedulePage({ userId }) {
     navigateToCurrentWeek,
     randomizeDayBalanced,
     generateNewWeek,
+    initializeMonthlySchedules,
   } = useWorkouts(userId);
 
   const { addNotification } = useNotifications();

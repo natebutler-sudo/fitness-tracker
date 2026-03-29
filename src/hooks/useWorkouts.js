@@ -13,13 +13,13 @@ import {
   randomizeDayWithBalance,
 } from '../services/workoutService';
 import {
-  generateWeeklySchedule,
-  getWeekNumber,
-  getWeekStartDate,
+  generateBalancedWeek,
   generateMonthlySchedules,
   randomizeSingleDay,
+  getMonday,
+  formatDateISO,
 } from '../utils/advancedRandomizer';
-import { getMonday, formatDateISO } from '../utils/advancedRandomizer';
+import { getWeekNumber, getWeekStartDate } from '../utils/workoutRandomizer';
 
 export const useWorkouts = (userId) => {
   const [currentWorkout, setCurrentWorkout] = useState(null);
@@ -37,7 +37,7 @@ export const useWorkouts = (userId) => {
 
       const weekNumber = getWeekNumber();
       const weekStartDate = getWeekStartDate();
-      const schedule = generateWeeklySchedule();
+      const schedule = generateBalancedWeek();
 
       // Check if this week already exists
       const existingWorkout = await getCurrentWeekWorkout(userId, weekNumber);
