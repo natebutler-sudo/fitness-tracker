@@ -11,6 +11,7 @@ import WorkoutHistory from './components/WorkoutHistory';
 import Dashboard from './pages/Dashboard';
 import Onboarding from './pages/Onboarding';
 import NotificationCenter from './components/NotificationCenter';
+import TrainerAvatar from './components/TrainerAvatar';
 import './styles/dark-mode.css';
 import './App.css';
 
@@ -73,6 +74,9 @@ function AppContent() {
 
       {/* Notification Center */}
       <NotificationCenter />
+
+      {/* Trainer Avatar */}
+      <TrainerAvatar />
     </div>
   );
 }
