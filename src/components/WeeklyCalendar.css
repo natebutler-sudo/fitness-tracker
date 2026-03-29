@@ -1,0 +1,492 @@
+/**
+ * Weekly Calendar Styles
+ * Mobile-first responsive design for weekly workout schedule
+ */
+
+.weekly-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+/* Header */
+.week-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.week-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.week-number {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.date-range {
+  font-size: 13px;
+  opacity: 0.95;
+}
+
+.badge-current {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* Days Container */
+.days-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Day Card */
+.day-card {
+  background: white;
+  border: 2px solid #e8e8e8;
+  border-left: 6px solid #999;
+  border-radius: 12px;
+  padding: 14px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.day-card:active {
+  transform: scale(0.98);
+}
+
+/* Body Group Color Coding */
+.day-card.body-group-chest {
+  border-left-color: #FF6B6B;
+}
+
+.day-card.body-group-back {
+  border-left-color: #4ECDC4;
+}
+
+.day-card.body-group-legs {
+  border-left-color: #95E1D3;
+}
+
+.day-card.body-group-shoulders {
+  border-left-color: #FFE66D;
+}
+
+.day-card.body-group-cardio {
+  border-left-color: #FF8C42;
+}
+
+.day-card.body-group-recovery {
+  border-left-color: #95A5A6;
+}
+
+.day-card.body-group-default {
+  border-left-color: #999;
+}
+
+.day-card.is-rest {
+  opacity: 0.7;
+  background: #f9f9f9;
+}
+
+/* Day Header */
+.day-header {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.day-date {
+  display: flex;
+  align-items: center;
+}
+
+.day-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #282c34;
+}
+
+.day-pattern {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pattern-icon {
+  font-size: 18px;
+}
+
+.pattern-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #282c34;
+}
+
+.day-pattern.rest .pattern-icon {
+  font-size: 20px;
+}
+
+.day-pattern.rest .pattern-name {
+  color: #999;
+  font-weight: 500;
+}
+
+/* Day Summary */
+.day-summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.exercise-count {
+  font-weight: 500;
+}
+
+.dot {
+  opacity: 0.5;
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.clock {
+  font-size: 13px;
+}
+
+/* Exercises Toggle */
+.toggle-exercises {
+  background: none;
+  border: none;
+  padding: 8px 0;
+  cursor: pointer;
+  color: #667eea;
+  font-weight: 500;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.toggle-exercises:active {
+  opacity: 0.7;
+}
+
+.toggle-label {
+  flex: 1;
+  text-align: left;
+}
+
+/* Exercises List */
+.day-exercises {
+  margin: 8px 0;
+}
+
+.exercise-list {
+  list-style: none;
+  margin: 8px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.exercise-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.exercise-name {
+  color: #282c34;
+  font-weight: 500;
+  flex: 1;
+}
+
+.exercise-sets {
+  color: #999;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Day Actions */
+.day-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn {
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn-shuffle-day {
+  flex: 1;
+  background: #f0f4ff;
+  color: #667eea;
+  border: 1px solid #667eea;
+}
+
+.btn-shuffle-day:active {
+  background: #e8f0ff;
+}
+
+.btn-log {
+  flex: 1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-log:active {
+  opacity: 0.9;
+}
+
+/* Rest Content */
+.rest-content {
+  text-align: center;
+  padding: 12px;
+  color: #999;
+  font-size: 13px;
+}
+
+/* Week Actions */
+.week-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 0 12px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 48px;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.btn-shuffle-week {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Dark Mode Support */
+.dark-mode .day-card {
+  background: #282c34;
+  border-color: #444;
+  color: #ffffff;
+}
+
+.dark-mode .day-card.is-rest {
+  background: #1a1e24;
+}
+
+.dark-mode .day-name {
+  color: #ffffff;
+}
+
+.dark-mode .pattern-name {
+  color: #ffffff;
+}
+
+.dark-mode .pattern-name.rest {
+  color: #888;
+}
+
+.dark-mode .day-summary {
+  color: #999;
+}
+
+.dark-mode .exercise-item {
+  background: #3a3f47;
+}
+
+.dark-mode .exercise-name {
+  color: #ffffff;
+}
+
+.dark-mode .exercise-sets {
+  color: #888;
+}
+
+.dark-mode .toggle-exercises {
+  color: #667eea;
+}
+
+/* Mobile Responsive - Extra Small (320px) */
+@media (max-width: 360px) {
+  .weekly-calendar {
+    padding: 8px;
+    gap: 10px;
+  }
+
+  .week-header {
+    padding: 12px;
+  }
+
+  .week-number {
+    font-size: 18px;
+  }
+
+  .date-range {
+    font-size: 12px;
+  }
+
+  .day-card {
+    padding: 12px;
+    border-left-width: 4px;
+  }
+
+  .day-header {
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .day-name {
+    font-size: 13px;
+  }
+
+  .day-summary {
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .btn {
+    padding: 9px 10px;
+    font-size: 12px;
+    min-height: 40px;
+  }
+
+  .btn-primary {
+    padding: 12px;
+    font-size: 13px;
+    min-height: 44px;
+  }
+}
+
+/* Mobile Responsive - Small (480px and up) */
+@media (min-width: 361px) {
+  .day-card {
+    padding: 14px;
+  }
+
+  .btn {
+    padding: 10px 12px;
+  }
+
+  .exercise-item {
+    padding: 8px;
+  }
+}
+
+/* Tablet and Up (768px and up) */
+@media (min-width: 768px) {
+  .weekly-calendar {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .week-header {
+    padding: 20px;
+  }
+
+  .day-card {
+    padding: 16px;
+    border-left-width: 8px;
+  }
+
+  .day-summary {
+    font-size: 13px;
+  }
+
+  .btn {
+    padding: 11px 14px;
+    font-size: 14px;
+  }
+
+  .btn-primary {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .exercise-item {
+    padding: 10px;
+  }
+}
+
+/* Day Card Expansion State */
+.day-card.is-expanded .day-exercises {
+  max-height: none;
+}
+
+.day-card.is-expanded {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .day-card.is-expanded {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}

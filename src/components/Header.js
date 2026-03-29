@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { logout } from '../services/authService';
+import ThemeToggle from './ThemeToggle';
 import './Header.css';
 
 function Header({ activeTab, onTabChange }) {
@@ -31,6 +32,7 @@ function Header({ activeTab, onTabChange }) {
               <span className="user-name">{userProfile?.displayName || 'User'}</span>
               <span className="user-email">{user.email}</span>
             </div>
+            <ThemeToggle />
             <div className="user-menu">
               <button
                 className="user-avatar"

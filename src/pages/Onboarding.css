@@ -1,0 +1,700 @@
+.onboarding {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.onboarding-content {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 20px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Step Header */
+.step-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.onboarding h1 {
+  font-size: 28px;
+  margin: 20px 0 10px;
+  color: #282c34;
+  font-weight: 700;
+}
+
+.step-icon {
+  font-size: 64px;
+  margin-bottom: 10px;
+  display: inline-block;
+  animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.step-subtitle {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Step 1: Trainer Name */
+.trainer-input-group {
+  margin: 30px 0;
+  position: relative;
+}
+
+.trainer-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.trainer-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.char-count {
+  font-size: 12px;
+  color: #999;
+  margin-top: 8px;
+  text-align: right;
+}
+
+/* Step 2: Avatar Selection */
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 30px 0;
+}
+
+.avatar-option {
+  background: #f5f5f5;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #282c34;
+}
+
+.avatar-option:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+  transform: translateY(-2px);
+}
+
+.avatar-option.selected {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  box-shadow: 0 0 0 2px #667eea;
+}
+
+.avatar-emoji {
+  font-size: 40px;
+}
+
+.avatar-name {
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.avatar-preview {
+  text-align: center;
+  margin: 30px 0;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.avatar-preview p {
+  margin: 0 0 15px;
+  color: #666;
+  font-size: 14px;
+}
+
+.preview-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin: 0 auto 10px;
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.preview-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #282c34;
+  margin: 0;
+}
+
+/* Step 3: Photos */
+.photo-instruction {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.photo-emoji {
+  font-size: 60px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.photo-instruction h2 {
+  font-size: 22px;
+  margin: 0 0 10px;
+  color: #282c34;
+}
+
+.instruction-text {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.camera-placeholder {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.camera-placeholder p {
+  margin: 10px 0;
+  color: #666;
+}
+
+.placeholder-text {
+  font-size: 12px;
+  color: #999;
+}
+
+.photo-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.photos-complete {
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 60px;
+  display: block;
+  margin-bottom: 15px;
+  animation: bounce 0.6s ease-in-out;
+}
+
+.photos-complete h2 {
+  font-size: 22px;
+  margin: 0 0 10px;
+  color: #282c34;
+}
+
+.photos-complete p {
+  color: #666;
+  font-size: 14px;
+  margin: 0 0 30px;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary,
+.btn-skip {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+}
+
+.btn-secondary:hover {
+  background: #f0f4ff;
+}
+
+.btn-skip {
+  background: transparent;
+  color: #999;
+  margin-top: 15px;
+}
+
+.btn-skip:hover {
+  color: #666;
+}
+
+.btn-large {
+  padding: 16px 20px;
+  font-size: 18px;
+}
+
+/* Progress Indicator */
+.onboarding-progress {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+  background: white;
+  color: #667eea;
+  transform: scale(1.1);
+}
+
+.progress-line {
+  width: 20px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.progress-line.active {
+  background: white;
+}
+
+/* Step 3: Guided Tour */
+.tour-welcome {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.tour-trainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.tour-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(102, 126, 234, 0.5);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.tour-greeting h2 {
+  font-size: 20px;
+  margin: 0 0 8px;
+  color: #282c34;
+  font-weight: 700;
+}
+
+.tour-greeting p {
+  font-size: 14px;
+  margin: 0;
+  color: #666;
+}
+
+.tour-feature {
+  margin: 30px 0;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  text-align: center;
+  animation: slideUp 0.5s ease-out;
+}
+
+.feature-icon {
+  font-size: 50px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.tour-feature h3 {
+  font-size: 22px;
+  margin: 0 0 10px;
+  color: #282c34;
+  font-weight: 700;
+}
+
+.feature-description {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 15px;
+  line-height: 1.5;
+}
+
+.feature-hint {
+  font-size: 13px;
+  color: #667eea;
+  background: #f0f4ff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 0;
+  border-left: 3px solid #667eea;
+  text-align: left;
+}
+
+.tour-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.progress-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #667eea;
+  width: 24px;
+  border-radius: 4px;
+}
+
+.dot:hover {
+  background: #667eea;
+}
+
+.progress-text {
+  font-size: 12px;
+  color: #999;
+  margin: 0;
+  font-weight: 500;
+}
+
+.tour-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.tour-buttons .btn-secondary {
+  flex: 0 1 auto;
+  width: auto;
+  padding: 12px 20px;
+  margin-top: 0;
+}
+
+.tour-buttons .btn-primary {
+  flex: 1;
+  margin-top: 0;
+}
+
+/* Dark Mode Support for Tour */
+.dark-mode .tour-welcome {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.dark-mode .tour-feature {
+  background: #282c34;
+}
+
+.dark-mode .tour-greeting h2,
+.dark-mode .tour-feature h3 {
+  color: #ffffff;
+}
+
+.dark-mode .tour-greeting p,
+.dark-mode .feature-description {
+  color: #b0b0b0;
+}
+
+.dark-mode .feature-hint {
+  background: rgba(102, 126, 234, 0.1);
+  color: #88c0ff;
+  border-left-color: #667eea;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .onboarding {
+    padding: 20px;
+  }
+
+  .onboarding-content {
+    padding: 30px 20px;
+    border-radius: 16px;
+  }
+
+  .onboarding h1 {
+    font-size: 24px;
+  }
+
+  .step-icon {
+    font-size: 50px;
+  }
+
+  .avatar-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .avatar-emoji {
+    font-size: 32px;
+  }
+
+  .preview-circle {
+    width: 70px;
+    height: 70px;
+    font-size: 32px;
+  }
+
+  .tour-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+
+  .tour-feature h3 {
+    font-size: 20px;
+  }
+
+  .feature-icon {
+    font-size: 44px;
+  }
+
+  .feature-description {
+    font-size: 13px;
+  }
+
+  .tour-buttons {
+    flex-wrap: wrap;
+  }
+
+  .onboarding-progress {
+    bottom: 20px;
+  }
+
+  .progress-dot {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .progress-line {
+    width: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .onboarding {
+    padding: 10px;
+  }
+
+  .onboarding-content {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+
+  .onboarding h1 {
+    font-size: 20px;
+  }
+
+  .step-icon {
+    font-size: 44px;
+  }
+
+  .avatar-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .tour-welcome {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .tour-avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+  }
+
+  .tour-greeting h2 {
+    font-size: 18px;
+  }
+
+  .tour-feature {
+    padding: 15px;
+    margin: 20px 0;
+  }
+
+  .tour-feature h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .feature-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .feature-description {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .feature-hint {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .tour-progress {
+    margin: 20px 0;
+    gap: 12px;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-skip {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .tour-buttons {
+    margin-top: 20px;
+    gap: 8px;
+  }
+
+  .tour-buttons .btn-secondary {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .onboarding-progress {
+    bottom: 10px;
+  }
+
+  .progress-dot {
+    width: 24px;
+    height: 24px;
+  }
+
+  .progress-line {
+    width: 8px;
+  }
+}
