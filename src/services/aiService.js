@@ -40,7 +40,7 @@ export const aiService = {
       }
 
       const model = genAI.getGenerativeModel({
-        model: "gemini-2.0-flash",
+        model: "gemini-2.5-flash",
         systemInstruction: PERSONAL_TRAINER_SYSTEM_PROMPT
       });
 
