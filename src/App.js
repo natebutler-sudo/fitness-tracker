@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
@@ -11,9 +11,11 @@ import WorkoutHistory from './components/WorkoutHistory';
 import Dashboard from './pages/Dashboard';
 import Onboarding from './pages/Onboarding';
 import NotificationCenter from './components/NotificationCenter';
-import TrainerAvatar from './components/TrainerAvatar';
 import './styles/dark-mode.css';
 import './App.css';
+
+// Lazy load TrainerAvatar - only loads when user is logged in
+const TrainerAvatar = lazy(() => import('./components/TrainerAvatar'));
 
 function AppContent() {
   const { user, loading, userProfile, updateProfile } = useAuth();
@@ -75,8 +77,10 @@ function AppContent() {
       {/* Notification Center */}
       <NotificationCenter />
 
-      {/* Trainer Avatar */}
-      <TrainerAvatar />
+      {/* Trainer Avatar - Lazy loaded for better initial performance */}
+      <Suspense fallback={null}>
+        <TrainerAvatar />
+      </Suspense>
     </div>
   );
 }

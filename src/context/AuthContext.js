@@ -20,36 +20,12 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Monitor auth state changes
+  // Monitor auth state changes - only set user, don't load profile yet
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       try {
         if (firebaseUser) {
           setUser(firebaseUser);
-
-          // Load user profile from Firestore
-          let profile = await getUserProfile(firebaseUser.uid);
-
-          // Create profile if it doesn't exist
-          if (!profile) {
-            profile = {
-              uid: firebaseUser.uid,
-              email: firebaseUser.email,
-              displayName: firebaseUser.displayName || 'User',
-              goal: 'tone up and burn fat',
-              experience: 'intermediate',
-              availableEquipment: ['dumbbells'],
-              restDays: ['saturday', 'sunday'],
-              preferences: {
-                workoutDuration: 60,
-                daysPerWeek: 5,
-                randomizeWeekly: true,
-              },
-            };
-            await createUserProfile(firebaseUser.uid, profile);
-          }
-
-          setUserProfile(profile);
           setError(null);
         } else {
           setUser(null);
@@ -59,12 +35,54 @@ export const AuthProvider = ({ children }) => {
         console.error('Auth state change error:', err);
         setError(err.message);
       } finally {
+        // Set loading to false immediately - profile loads separately
         setLoading(false);
       }
     });
 
     return unsubscribe;
   }, []);
+
+  // Load user profile asynchronously after auth state is determined
+  useEffect(() => {
+    if (!user) {
+      setUserProfile(null);
+      return;
+    }
+
+    const loadProfile = async () => {
+      try {
+        let profile = await getUserProfile(user.uid);
+
+        // Create profile if it doesn't exist
+        if (!profile) {
+          profile = {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName || 'User',
+            goal: 'tone up and burn fat',
+            experience: 'intermediate',
+            availableEquipment: ['dumbbells'],
+            restDays: ['saturday', 'sunday'],
+            preferences: {
+              workoutDuration: 60,
+              daysPerWeek: 5,
+              randomizeWeekly: true,
+            },
+          };
+          await createUserProfile(user.uid, profile);
+        }
+
+        setUserProfile(profile);
+      } catch (err) {
+        console.error('Error loading profile:', err);
+        setError(err.message);
+      }
+    };
+
+    // Load profile without blocking initial render
+    loadProfile();
+  }, [user]);
 
   // Update user profile
   const updateProfile = async (updates) => {
