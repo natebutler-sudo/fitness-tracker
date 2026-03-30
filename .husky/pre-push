@@ -1,0 +1,27 @@
+#!/bin/sh
+# Prevent direct pushes to master branch
+# All changes must come through development branch via PR
+
+protected_branches='^(master|production|main)$'
+current_branch=$(git symbolic-ref --short HEAD)
+
+if echo "$current_branch" | grep -qE "$protected_branches"; then
+  echo "❌ ERROR: Cannot push directly to '$current_branch' branch"
+  echo ""
+  echo "✅ Proper workflow:"
+  echo "  1. Push your feature branch instead:"
+  echo "     git push origin $current_branch"
+  echo "  2. Create a PR on GitHub: development → master"
+  echo "  3. Get approval and merge via GitHub UI"
+  echo "  4. This triggers auto-deployment to production"
+  echo ""
+  exit 1
+fi
+
+# Verify you're on development or a feature branch
+if ! echo "$current_branch" | grep -qE '^(development|feature/|bugfix/|hotfix/)'; then
+  echo "⚠️  WARNING: You're on '$current_branch' - make sure this is intentional"
+  echo "   Consider using feature branches: feature/your-feature-name"
+fi
+
+exit 0
