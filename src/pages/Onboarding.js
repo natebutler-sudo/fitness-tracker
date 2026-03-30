@@ -1,13 +1,15 @@
 // Onboarding Page - First-time user experience
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { AVAILABLE_THEMES, applyTheme } from '../utils/themeUtils';
 import './Onboarding.css';
 
 function Onboarding({ onComplete }) {
   const { userProfile, updateProfile } = useAuth();
-  const [step, setStep] = useState(1); // 1: trainer name, 2: avatar selection, 3: tour, 4: photos
+  const [step, setStep] = useState(1); // 1: trainer name, 2: avatar, 3: theme, 4: tour, 5: photos
   const [trainerName, setTrainerName] = useState(userProfile?.trainer?.name || '');
   const [selectedAvatar, setSelectedAvatar] = useState(userProfile?.trainer?.avatar || '💪');
+  const [selectedTheme, setSelectedTheme] = useState(userProfile?.theme || 'purple');
   const [photoStep, setPhotoStep] = useState(0);
   const [tourStep, setTourStep] = useState(0);
 
@@ -87,14 +89,26 @@ function Onboarding({ onComplete }) {
         createdAt: new Date().toISOString(),
       },
     });
-    setStep(3); // Go to tour
+    setStep(3); // Go to theme selection
+  };
+
+  const handleThemeSelect = (themeId) => {
+    setSelectedTheme(themeId);
+    applyTheme(themeId); // Apply theme immediately for preview
+  };
+
+  const handleThemeConfirm = async () => {
+    await updateProfile({
+      theme: selectedTheme,
+    });
+    setStep(4); // Go to tour
   };
 
   const handleTourNext = () => {
     if (tourStep < tourFeatures.length - 1) {
       setTourStep(tourStep + 1);
     } else {
-      setStep(4); // Go to photos
+      setStep(5); // Go to photos
     }
   };
 
@@ -194,8 +208,43 @@ function Onboarding({ onComplete }) {
         </div>
       )}
 
-      {/* Step 3: Guided Tour */}
+      {/* Step 3: Theme Selection */}
       {step === 3 && (
+        <div className="onboarding-step step-3-theme">
+          <div className="onboarding-content">
+            <div className="step-header">
+              <h1>Choose Your Theme</h1>
+              <p className="step-subtitle">Pick a color theme that matches your style (Light & Dark modes available)</p>
+            </div>
+
+            <div className="theme-grid">
+              {AVAILABLE_THEMES.map((theme) => (
+                <button
+                  key={theme.id}
+                  className={`theme-option ${selectedTheme === theme.id ? 'selected' : ''}`}
+                  onClick={() => handleThemeSelect(theme.id)}
+                  title={theme.name}
+                >
+                  <div className="theme-preview" style={{ backgroundColor: theme.preview }}></div>
+                  <span className="theme-name">{theme.name}</span>
+                  <span className="theme-desc">{theme.description}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="theme-mode-hint">
+              <p>💡 You can switch between Light and Dark mode anytime using the theme toggle button in the header</p>
+            </div>
+
+            <button onClick={handleThemeConfirm} className="btn-primary btn-large">
+              Continue with {AVAILABLE_THEMES.find(t => t.id === selectedTheme)?.name}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Step 4: Guided Tour */}
+      {step === 4 && (
         <div className="onboarding-step step-3">
           <div className="onboarding-content">
             <div className="tour-welcome">
@@ -246,8 +295,8 @@ function Onboarding({ onComplete }) {
         </div>
       )}
 
-      {/* Step 4: Progress Photos */}
-      {step === 4 && (
+      {/* Step 5: Progress Photos */}
+      {step === 5 && (
         <div className="onboarding-step step-3">
           <div className="onboarding-content">
             <div className="step-header">

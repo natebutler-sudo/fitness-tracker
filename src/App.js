@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy, useEffect } from 'react';
 import { useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
@@ -11,6 +11,8 @@ import WorkoutHistory from './components/WorkoutHistory';
 import Dashboard from './pages/Dashboard';
 import Onboarding from './pages/Onboarding';
 import NotificationCenter from './components/NotificationCenter';
+import { initializeTheme, applyTheme } from './utils/themeUtils';
+import './styles/themes.css';
 import './styles/dark-mode.css';
 import './App.css';
 
@@ -21,6 +23,18 @@ function AppContent() {
   const { user, loading, userProfile, updateProfile } = useAuth();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [authMode, setAuthMode] = useState('login'); // 'login' or 'signup'
+
+  // Initialize and apply theme on app load and when user profile changes
+  useEffect(() => {
+    initializeTheme();
+  }, []);
+
+  // Apply user's saved theme preference when they log in
+  useEffect(() => {
+    if (userProfile?.theme) {
+      applyTheme(userProfile.theme);
+    }
+  }, [userProfile?.theme]);
 
   if (loading) {
     return (

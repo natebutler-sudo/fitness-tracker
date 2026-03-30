@@ -1,0 +1,383 @@
+/* Comprehensive Theme System - 6 Themes × 2 Modes = 12 Theme Options */
+
+/* ============================================
+   1. PURPLE (Current Default Theme)
+   ============================================ */
+
+/* Purple Light Mode */
+:root.theme-purple:not(.dark-mode) {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #eeeeee;
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+  --text-primary: #282c34;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --border-color: #e0e0e0;
+  --border-light: #f0f0f0;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #e0e0e0;
+  --button-bg: #667eea;
+  --button-hover: #764ba2;
+  --accent-light: #e8eaf6;
+  --accent-dark: #667eea;
+  --success-bg: rgba(76, 175, 80, 0.1);
+  --success-text: #4caf50;
+  --warning-bg: rgba(255, 152, 0, 0.1);
+  --warning-text: #ff9800;
+  --error-bg: rgba(244, 67, 54, 0.1);
+  --error-text: #f44336;
+}
+
+/* Purple Dark Mode */
+:root.theme-purple.dark-mode {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #242424;
+  --bg-tertiary: #2d2d2d;
+  --bg-overlay: rgba(0, 0, 0, 0.8);
+  --text-primary: #f0f0f0;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #808080;
+  --border-color: #3d3d3d;
+  --border-light: #4d4d4d;
+  --card-bg: #242424;
+  --input-bg: #2d2d2d;
+  --input-border: #3d3d3d;
+  --button-bg: #667eea;
+  --button-hover: #764ba2;
+  --accent-light: #3d3a7a;
+  --accent-dark: #667eea;
+  --success-bg: rgba(76, 175, 80, 0.15);
+  --success-text: #81c784;
+  --warning-bg: rgba(255, 152, 0, 0.15);
+  --warning-text: #ffb74d;
+  --error-bg: rgba(244, 67, 54, 0.15);
+  --error-text: #ef5350;
+}
+
+/* ============================================
+   2. BLUE SERENITY - Cool Blues & Teals
+   ============================================ */
+
+/* Blue Light Mode */
+:root.theme-blue:not(.dark-mode) {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f0f7ff;
+  --bg-tertiary: #e3f2fd;
+  --bg-overlay: rgba(3, 102, 214, 0.5);
+  --text-primary: #0d47a1;
+  --text-secondary: #1565c0;
+  --text-tertiary: #1976d2;
+  --border-color: #90caf9;
+  --border-light: #bbdefb;
+  --card-bg: #ffffff;
+  --input-bg: #f0f7ff;
+  --input-border: #90caf9;
+  --button-bg: #1976d2;
+  --button-hover: #1565c0;
+  --accent-light: #e3f2fd;
+  --accent-dark: #0d47a1;
+  --success-bg: rgba(76, 175, 80, 0.1);
+  --success-text: #00897b;
+  --warning-bg: rgba(255, 152, 0, 0.1);
+  --warning-text: #00897b;
+  --error-bg: rgba(0, 150, 136, 0.1);
+  --error-text: #00897b;
+}
+
+/* Blue Dark Mode */
+:root.theme-blue.dark-mode {
+  --bg-primary: #0d1b2a;
+  --bg-secondary: #0f2845;
+  --bg-tertiary: #132f4c;
+  --bg-overlay: rgba(25, 118, 210, 0.8);
+  --text-primary: #b3e5fc;
+  --text-secondary: #81d4fa;
+  --text-tertiary: #4fc3f7;
+  --border-color: #1976d2;
+  --border-light: #1e88e5;
+  --card-bg: #0f2845;
+  --input-bg: #132f4c;
+  --input-border: #1976d2;
+  --button-bg: #1976d2;
+  --button-hover: #1565c0;
+  --accent-light: #1e88e5;
+  --accent-dark: #b3e5fc;
+  --success-bg: rgba(0, 137, 123, 0.15);
+  --success-text: #4db6ac;
+  --warning-bg: rgba(0, 150, 136, 0.15);
+  --warning-text: #26a69a;
+  --error-bg: rgba(0, 188, 212, 0.15);
+  --error-text: #80deea;
+}
+
+/* ============================================
+   3. GREEN ENERGY - Vibrant Greens
+   ============================================ */
+
+/* Green Light Mode */
+:root.theme-green:not(.dark-mode) {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f1f8e9;
+  --bg-tertiary: #dcedc8;
+  --bg-overlay: rgba(76, 175, 80, 0.5);
+  --text-primary: #1b5e20;
+  --text-secondary: #2e7d32;
+  --text-tertiary: #388e3c;
+  --border-color: #81c784;
+  --border-light: #c8e6c9;
+  --card-bg: #ffffff;
+  --input-bg: #f1f8e9;
+  --input-border: #81c784;
+  --button-bg: #43a047;
+  --button-hover: #2e7d32;
+  --accent-light: #dcedc8;
+  --accent-dark: #1b5e20;
+  --success-bg: rgba(76, 175, 80, 0.15);
+  --success-text: #2e7d32;
+  --warning-bg: rgba(255, 193, 7, 0.1);
+  --warning-text: #f57f17;
+  --error-bg: rgba(244, 67, 54, 0.1);
+  --error-text: #c62828;
+}
+
+/* Green Dark Mode */
+:root.theme-green.dark-mode {
+  --bg-primary: #1b5e20;
+  --bg-secondary: #2e7d32;
+  --bg-tertiary: #388e3c;
+  --bg-overlay: rgba(76, 175, 80, 0.8);
+  --text-primary: #a5d6a7;
+  --text-secondary: #81c784;
+  --text-tertiary: #66bb6a;
+  --border-color: #43a047;
+  --border-light: #66bb6a;
+  --card-bg: #2e7d32;
+  --input-bg: #1b5e20;
+  --input-border: #66bb6a;
+  --button-bg: #43a047;
+  --button-hover: #2e7d32;
+  --accent-light: #66bb6a;
+  --accent-dark: #a5d6a7;
+  --success-bg: rgba(76, 175, 80, 0.2);
+  --success-text: #a5d6a7;
+  --warning-bg: rgba(255, 193, 7, 0.15);
+  --warning-text: #ffd54f;
+  --error-bg: rgba(244, 67, 54, 0.15);
+  --error-text: #ef9a9a;
+}
+
+/* ============================================
+   4. ORANGE WARMTH - Warm Oranges & Ambers
+   ============================================ */
+
+/* Orange Light Mode */
+:root.theme-orange:not(.dark-mode) {
+  --bg-primary: #ffffff;
+  --bg-secondary: #fff3e0;
+  --bg-tertiary: #ffe0b2;
+  --bg-overlay: rgba(255, 152, 0, 0.5);
+  --text-primary: #e65100;
+  --text-secondary: #f57c00;
+  --text-tertiary: #e65100;
+  --border-color: #ffb74d;
+  --border-light: #ffe0b2;
+  --card-bg: #ffffff;
+  --input-bg: #fff3e0;
+  --input-border: #ffb74d;
+  --button-bg: #f57c00;
+  --button-hover: #e65100;
+  --accent-light: #ffe0b2;
+  --accent-dark: #e65100;
+  --success-bg: rgba(76, 175, 80, 0.1);
+  --success-text: #f57c00;
+  --warning-bg: rgba(255, 152, 0, 0.15);
+  --warning-text: #f57c00;
+  --error-bg: rgba(244, 67, 54, 0.1);
+  --error-text: #d84315;
+}
+
+/* Orange Dark Mode */
+:root.theme-orange.dark-mode {
+  --bg-primary: #3e2723;
+  --bg-secondary: #5d4037;
+  --bg-tertiary: #6d4c41;
+  --bg-overlay: rgba(255, 152, 0, 0.8);
+  --text-primary: #ffb74d;
+  --text-secondary: #ffa726;
+  --text-tertiary: #ff9800;
+  --border-color: #f57c00;
+  --border-light: #ffa726;
+  --card-bg: #5d4037;
+  --input-bg: #3e2723;
+  --input-border: #f57c00;
+  --button-bg: #f57c00;
+  --button-hover: #e65100;
+  --accent-light: #ffa726;
+  --accent-dark: #ffb74d;
+  --success-bg: rgba(76, 175, 80, 0.15);
+  --success-text: #ffb74d;
+  --warning-bg: rgba(255, 152, 0, 0.2);
+  --warning-text: #ffb74d;
+  --error-bg: rgba(244, 67, 54, 0.15);
+  --error-text: #ffab91;
+}
+
+/* ============================================
+   5. COOL SLATE - Professional Slate Grays
+   ============================================ */
+
+/* Slate Light Mode */
+:root.theme-slate:not(.dark-mode) {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f6fa;
+  --bg-tertiary: #eceff1;
+  --bg-overlay: rgba(55, 71, 79, 0.5);
+  --text-primary: #263238;
+  --text-secondary: #455a64;
+  --text-tertiary: #607d8b;
+  --border-color: #b0bec5;
+  --border-light: #cfd8dc;
+  --card-bg: #ffffff;
+  --input-bg: #f5f6fa;
+  --input-border: #b0bec5;
+  --button-bg: #37474f;
+  --button-hover: #263238;
+  --accent-light: #cfd8dc;
+  --accent-dark: #263238;
+  --success-bg: rgba(76, 175, 80, 0.1);
+  --success-text: #37474f;
+  --warning-bg: rgba(255, 152, 0, 0.1);
+  --warning-text: #37474f;
+  --error-bg: rgba(244, 67, 54, 0.1);
+  --error-text: #37474f;
+}
+
+/* Slate Dark Mode */
+:root.theme-slate.dark-mode {
+  --bg-primary: #1a1f36;
+  --bg-secondary: #263238;
+  --bg-tertiary: #37474f;
+  --bg-overlay: rgba(55, 71, 79, 0.8);
+  --text-primary: #eceff1;
+  --text-secondary: #b0bec5;
+  --text-tertiary: #90a4ae;
+  --border-color: #455a64;
+  --border-light: #607d8b;
+  --card-bg: #263238;
+  --input-bg: #1a1f36;
+  --input-border: #455a64;
+  --button-bg: #455a64;
+  --button-hover: #37474f;
+  --accent-light: #90a4ae;
+  --accent-dark: #eceff1;
+  --success-bg: rgba(76, 175, 80, 0.15);
+  --success-text: #b0bec5;
+  --warning-bg: rgba(255, 152, 0, 0.15);
+  --warning-text: #cfd8dc;
+  --error-bg: rgba(244, 67, 54, 0.15);
+  --error-text: #ef9a9a;
+}
+
+/* ============================================
+   6. HIGH CONTRAST - Bold & Vibrant
+   ============================================ */
+
+/* High Contrast Light Mode */
+:root.theme-contrast:not(.dark-mode) {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f4f6;
+  --bg-tertiary: #e5e7eb;
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+  --text-primary: #000000;
+  --text-secondary: #111111;
+  --text-tertiary: #333333;
+  --border-color: #1f2937;
+  --border-light: #4b5563;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #000000;
+  --button-bg: #ff006e;
+  --button-hover: #c2185b;
+  --accent-light: #e5e7eb;
+  --accent-dark: #000000;
+  --success-bg: rgba(0, 150, 136, 0.15);
+  --success-text: #00695c;
+  --warning-bg: rgba(255, 111, 0, 0.15);
+  --warning-text: #e65100;
+  --error-bg: rgba(211, 47, 47, 0.15);
+  --error-text: #b71c1c;
+}
+
+/* High Contrast Dark Mode */
+:root.theme-contrast.dark-mode {
+  --bg-primary: #000000;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2d2d2d;
+  --bg-overlay: rgba(255, 255, 255, 0.9);
+  --text-primary: #ffffff;
+  --text-secondary: #eeeeee;
+  --text-tertiary: #dddddd;
+  --border-color: #ffff00;
+  --border-light: #ffff99;
+  --card-bg: #1a1a1a;
+  --input-bg: #000000;
+  --input-border: #ffff00;
+  --button-bg: #ff006e;
+  --button-hover: #c2185b;
+  --accent-light: #ffff00;
+  --accent-dark: #ffffff;
+  --success-bg: rgba(0, 255, 136, 0.2);
+  --success-text: #00ff88;
+  --warning-bg: rgba(255, 200, 0, 0.2);
+  --warning-text: #ffff00;
+  --error-bg: rgba(255, 0, 0, 0.2);
+  --error-text: #ff6666;
+}
+
+/* ============================================
+   DEFAULT - Apply Purple theme by default
+   ============================================ */
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #eeeeee;
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+  --text-primary: #282c34;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --border-color: #e0e0e0;
+  --border-light: #f0f0f0;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #e0e0e0;
+  --button-bg: #667eea;
+  --button-hover: #764ba2;
+  --accent-light: #e8eaf6;
+  --accent-dark: #667eea;
+}
+
+/* Apply theme colors to all elements */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+input,
+textarea,
+select {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--input-border);
+}
+
+button {
+  background-color: var(--button-bg);
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
