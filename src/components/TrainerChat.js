@@ -17,6 +17,7 @@ export default function TrainerChat({ avatar, onClose }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [initialLoadError, setInitialLoadError] = useState(false);
+  const [copiedMessageId, setCopiedMessageId] = useState(null);
   const messagesEndRef = useRef(null);
 
   // Load chat history on mount
@@ -44,6 +45,21 @@ export default function TrainerChat({ avatar, onClose }) {
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const formatTimestamp = (date) => {
+    if (!date) return '';
+    const d = new Date(date);
+    const hours = String(d.getHours()).padStart(2, '0');
+    const minutes = String(d.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+
+  const copyToClipboard = (text, messageId) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedMessageId(messageId);
+      setTimeout(() => setCopiedMessageId(null), 2000);
+    });
   };
 
   const handleSendMessage = async (e) => {
@@ -130,8 +146,24 @@ export default function TrainerChat({ avatar, onClose }) {
               {msg.sender === 'assistant' && (
                 <span className="msg-avatar">{avatar}</span>
               )}
-              <div className="msg-content">
-                {msg.text}
+              <div className="msg-wrapper">
+                <div className="msg-content">
+                  {msg.text}
+                </div>
+                <span className="msg-timestamp">
+                  {formatTimestamp(msg.timestamp)}
+                </span>
+                {msg.sender === 'assistant' && (
+                  <div className="msg-actions">
+                    <button
+                      className={`copy-btn ${copiedMessageId === idx ? 'copied' : ''}`}
+                      onClick={() => copyToClipboard(msg.text, idx)}
+                      title="Copy response"
+                    >
+                      {copiedMessageId === idx ? '✓ Copied' : '📋 Copy'}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           ))}
