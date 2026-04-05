@@ -128,7 +128,73 @@
   max-width: 85%;
   word-wrap: break-word;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* Message timestamp */
+.msg-timestamp {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Copy button for assistant messages */
+.msg-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.copy-btn {
+  background: none;
+  border: 1px solid currentColor;
+  color: inherit;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+.copy-btn.copied {
+  color: #4caf50;
+  border-color: #4caf50;
+  opacity: 1;
+}
+
+/* Message wrapper for better organization */
+.msg-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-message.assistant .msg-wrapper {
+  gap: 4px;
+}
+
+/* Question highlight */
+.question-section {
+  border-left: 3px solid #667eea;
+  padding-left: 10px;
+  margin: 4px 0;
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.dark-mode .question-section {
+  border-left-color: #7b9fff;
 }
 
 /* Loading State */
@@ -293,6 +359,20 @@
 .dark-mode .chat-error {
   background: #4a2020;
   color: #FF9999;
+}
+
+.dark-mode .copy-btn {
+  border-color: #999;
+  color: #e8e8e8;
+}
+
+.dark-mode .copy-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .copy-btn.copied {
+  color: #4caf50;
+  border-color: #4caf50;
 }
 
 /* Tablet and Up */

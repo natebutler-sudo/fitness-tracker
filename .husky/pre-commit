@@ -1,0 +1,31 @@
+#!/bin/sh
+# Prevent commits directly to master or production branches
+# This ensures all changes go through the development → PR → master workflow
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$BRANCH" = "master" ] || [ "$BRANCH" = "production" ] || [ "$BRANCH" = "main" ]; then
+  echo "❌ ERROR: Direct commits to '$BRANCH' are not allowed."
+  echo ""
+  echo "✅ Proper workflow:"
+  echo "  1. Switch to development branch:"
+  echo "     git checkout development"
+  echo "  2. Create a feature branch:"
+  echo "     git checkout -b feature/your-feature"
+  echo "  3. Make your changes and commit:"
+  echo "     git commit -m 'feat: your feature'"
+  echo "  4. Push to origin/development:"
+  echo "     git push origin feature/your-feature"
+  echo "  5. Create a PR: development → master"
+  echo ""
+  exit 1
+fi
+
+# Check if .env.development exists if committing on development
+if [ "$BRANCH" = "development" ] || [[ "$BRANCH" == feature/* ]]; then
+  if [ ! -f .env.development ]; then
+    echo "⚠️  WARNING: .env.development not found. Make sure to use .env.development locally."
+  fi
+fi
+
+exit 0
